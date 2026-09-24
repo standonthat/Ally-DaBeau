@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop &mdash; Stand On That!</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="navbar wrap">
+    <a class="brand" href="index.html">Stand <em>On That!</em></a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="content.html">Behind the Build</a>
+      <a href="subscribe.html">Membership</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding:64px 0 40px;">
+  <div class="wrap">
+    <p class="kicker">Shop</p>
+    <h1 style="font-size:clamp(2rem,4.6vw,3rem);">Small-batch, made to order.</h1>
+    <p>Edit the products below in <code>shop.html</code> and <code>netlify/functions/create-checkout.js</code> to match what you actually sell. Prices are set server-side so nothing can be tampered with client-side.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="grid" id="product-grid">
+      <!-- Each card's data-id must match an entry in PRODUCTS in netlify/functions/create-checkout.js -->
+      <div class="card">
+        <h3>Raw-edge tee</h3>
+        <p class="price">$38</p>
+        <p>Hand-cut, single seam, made one at a time.</p>
+        <button class="btn btn-primary" data-buy="tee-raw-edge">Buy</button>
+      </div>
+      <div class="card">
+        <h3>Overdyed hoodie</h3>
+        <p class="price">$74</p>
+        <p>Garment-dyed in small batches, no two exactly alike.</p>
+        <button class="btn btn-primary" data-buy="hoodie-overdyed">Buy</button>
+      </div>
+      <div class="card">
+        <h3>Patchwork jacket</h3>
+        <p class="price">$156</p>
+        <p>Built from reclaimed fabric, one-off construction.</p>
+        <button class="btn btn-primary" data-buy="jacket-patchwork">Buy</button>
+      </div>
+    </div>
+    <p class="status-msg" id="status"></p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 Stand On That! Payments handled securely by Stripe.</p>
+  </div>
+</footer>
+
+<script src="js/checkout.js"></script>
+<script>
+document.querySelectorAll('[data-buy]').forEach(btn => {
+  btn.addEventListener('click', () => startCheckout({ mode: 'payment', id: btn.dataset.buy }, btn));
+});
+</script>
+</body>
+</html>
